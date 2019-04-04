@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/jennyjean8675309/cabinets_node_backend/issues"
   },
-  "homepage": "https://github.com/jennyjean8675309/cabinets_node_backend#readme"
+  "homepage": "https://github.com/jennyjean8675309/cabinets_node_backend#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
