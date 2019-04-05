@@ -7,18 +7,25 @@ let app = express()
 //connects us to the route we defined in user.js
 let userRoute = require('./routes/user')
 
+let itemRoute = require('./routes/item')
+
 //references the path module
 let path = require('path')
 
+let bodyParser = require('body-parser')
+
+//allows us to access the body of our request, in json format
+app.use(bodyParser.json())
+
 //using middleware to print every request that comes in (next is a reference to the next function in the pipeline)
 app.use((req, res, next) => {
-  console.log(`${new Date().toString()} => ${req.originalUrl}`)
-
+  console.log(`${new Date().toString()} => ${req.originalUrl}`, req.body)
   next()
   //have to call next() when it's done or it will break the chain of functions
 })
 //telling express to register the route above
 app.use(userRoute)
+app.use(itemRoute)
 //serves static content to your app
 app.use(express.static('public'))
 
