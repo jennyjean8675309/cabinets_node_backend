@@ -11,8 +11,9 @@ let mongoose = require('mongoose')
 //the above variables are optional in connecting your database with mongoose
 // mongoose.connect(`mongodb://${user}:${password}@${server}/${database}`)
 
+const PORT = process.env.PORT || 3000
 //should only do this once in your code
-mongoose.connect('mongodb://localhost/cabinets_node_backend');
+mongoose.connect('mongodb://localhost:27017/cabinetsDatabase');
 console.log('mongoose is connected', mongoose.connection.readyState);
 
 //Creating a schema for item attributes
@@ -23,6 +24,11 @@ let ItemSchema = new mongoose.Schema({
   location: String,
   imageUrl: String
 })
+
+//in the body, everything needs to be written in double quotes
+// {
+//   "name": "La Sagrada Familia"
+// }
 
 //Creating a model and exporting it
 module.exports = mongoose.model('Item', ItemSchema)
