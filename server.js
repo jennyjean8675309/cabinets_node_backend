@@ -9,15 +9,31 @@ let path = require('path');
 let userRoute = require('./src/routes/user');
 let itemRoute = require('./src/routes/item');
 
+mongoose.connect("mongodb+srv://jennyjean8675309:9hMv7N1kEmLOFYWH@cabinetsdatabase-rk7kx.mongodb.net/test?retryWrites=true", {
+  useMongoClient: true
+});
+
 // Using documentation from MongoDB Atlas site
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://jennyjean8675309:I%2Elove%2ESP4@cabinetsdatabase-rk7kx.mongodb.net/test?retryWrites=true";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  console.log('error', err, isConnected())
-  client.close();
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://jennyjean8675309:9hMv7N1kEmLOFYWH@cabinetsdatabase-rk7kx.mongodb.net/test?retryWrites=true";
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   console.log('error', err, isConnected())
+//   client.close();
+// });
+
+mongoose.connection.on('connected', function () {
+    console.log('Mongoose connected');
+});
+
+mongoose.connection.on('error', function (err) {
+  console.log('Mongoose connection error: ' + err);
+});
+
+mongoose.connection.on('disconnected', function () {
+  console.log('Mongoose disconnected');
 });
 
 function isConnected() {
@@ -54,12 +70,11 @@ router.route('/')
   res.json({ message: 'Initialized!' });
 });
 
-//Configure express to add 'api' in front of routes
-// app.use('/api', router);
+// Configure express to add 'api' in front of routes
+app.use('/api', router);
 
 //Telling express to register the routes defined above
-app.use(userRoute);
-app.use(itemRoute);
+app.use(userRoute, itemRoute);
 
 //Serves static content to your app
 app.use(express.static('public'));

@@ -3,7 +3,7 @@ let router = express.Router()
 
 //using QueryString (a query property on the request object)
 //localhost:3000/user?username=jennyjean
-router.get('/user', (req, res) => {
+router.get('/users', (req, res) => {
   if (req.query.username) {
     res.send(`You have requested a user: ${req.query.username}`)
   } else {
@@ -13,7 +13,7 @@ router.get('/user', (req, res) => {
 
 //using the params property on the request object
 //localhost:3000/user/jennyjean
-router.get('/user/:username', (req, res) => {
+router.get('/users/:username', (req, res) => {
   res.send(`You have requested a user: ${req.params.username}`)
 })
 
