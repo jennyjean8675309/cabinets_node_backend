@@ -17,12 +17,5 @@ router.get('/user/:username', (req, res) => {
   res.send(`You have requested a user: ${req.params.username}`)
 })
 
-//Creating a forced error to test our 500 Error
-router.get('/error', (req, res) => {
-  throw new Error('This is a forced error.')
-})
-
-
-
 //exports the router, allowing us to import it in our index.js file
 module.exports = router

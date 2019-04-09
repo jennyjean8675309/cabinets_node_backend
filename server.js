@@ -9,25 +9,30 @@ let path = require('path');
 let userRoute = require('./src/routes/user');
 let itemRoute = require('./src/routes/item');
 
+// Using documentation from MongoDB Atlas site
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://jennyjean8675309:I%2Elove%2ESP4@cabinetsdatabase-rk7kx.mongodb.net/test?retryWrites=true";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  console.log('error', err, isConnected())
+  client.close();
+});
+
+function isConnected() {
+  console.log('client', !!client, 'client topology', !!client.topology, 'is connected?', client.topology.isConnected())
+}
+
+//Import Models
+const Item = require('./src/models/item.model')
+
 //Create an instance of express and its router
 let app = express();
 let router = express.Router();
 
 //Set our port
 const port = process.env.API_PORT || 3000;
-
-// const server = ''
-// const database = ''
-// const user = ''
-// const password = ''
-
-//The above variables are optional in connecting your database with mongoose
-// mongoose.connect(`mongodb://${user}:${password}@${server}/${database}`)
-
-//Connect mongoose to your database
-//Should only do this once in your code
-mongoose.connect('mongodb://localhost/cabinetsDatabase');
-console.log('mongoose is connected', mongoose.connection.readyState);
 
 //Configure express to use body-parser to parse request bodies in JSON
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -50,7 +55,7 @@ router.route('/')
 });
 
 //Configure express to add 'api' in front of routes
-app.use('/api', router);
+// app.use('/api', router);
 
 //Telling express to register the routes defined above
 app.use(userRoute);
@@ -60,14 +65,16 @@ app.use(itemRoute);
 app.use(express.static('public'));
 
 //Handling Errors
-app.use((req, res, next) => {
-  res.status(404).send('We think you are lost!');
-});
+// app.use((req, res, next) => {
+//   res.status(404).send('We think you are lost!');
+//   next();
+// });
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
 
   res.sendFile(path.join(__dirname, '../public/500.html'));
+  next();
 });
 
 //Using middleware to print every request that comes in (next is a reference to the next function in the pipeline)
