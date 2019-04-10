@@ -3,12 +3,19 @@ let mongoose = require('mongoose')
 
 //Creating a schema for item attributes
 let ItemSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    required: true
+  },
   description: String,
   interpretation: String,
   location: String,
   itemImage: String,
-  itemType: String
+  itemType: {
+    type: String,
+    required: true,
+    enum: ["Artificialia", "Naturalia", "Exotica", "Scientifica"]
+  }
 })
 
 //in the body, everything needs to be written in double quotes
