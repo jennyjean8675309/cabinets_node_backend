@@ -9,20 +9,10 @@ let path = require('path');
 let userRoute = require('./src/routes/user');
 let itemRoute = require('./src/routes/item');
 
+//Using mLab to make a remote database connection
 mongoose.connect("mongodb+srv://jennyjean8675309:9hMv7N1kEmLOFYWH@cabinetsdatabase-rk7kx.mongodb.net/test?retryWrites=true", {
-  useMongoClient: true
+  useNewUrlParser: true
 });
-
-// Using documentation from MongoDB Atlas site
-// const MongoClient = require('mongodb').MongoClient;
-// const uri = "mongodb+srv://jennyjean8675309:9hMv7N1kEmLOFYWH@cabinetsdatabase-rk7kx.mongodb.net/test?retryWrites=true";
-// const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   console.log('error', err, isConnected())
-//   client.close();
-// });
 
 mongoose.connection.on('connected', function () {
     console.log('Mongoose connected');
@@ -35,10 +25,6 @@ mongoose.connection.on('error', function (err) {
 mongoose.connection.on('disconnected', function () {
   console.log('Mongoose disconnected');
 });
-
-function isConnected() {
-  console.log('client', !!client, 'client topology', !!client.topology, 'is connected?', client.topology.isConnected())
-}
 
 //Import Models
 const Item = require('./src/models/item.model')

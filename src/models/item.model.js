@@ -7,7 +7,8 @@ let ItemSchema = new mongoose.Schema({
   description: String,
   interpretation: String,
   location: String,
-  imageUrl: String
+  itemImage: String,
+  itemType: String
 })
 
 //in the body, everything needs to be written in double quotes
