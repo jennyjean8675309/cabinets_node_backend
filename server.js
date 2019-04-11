@@ -1,3 +1,5 @@
+'use strict'
+
 //Import dependencies
 
 let express = require('express');
