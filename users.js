@@ -1,7 +1,4 @@
-//Ready to seed database
-
-[
-  {
+let user1 = {
     "cabinetName": "Jenny's Stuff",
     "cabinetImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/17th-Century_Cabinet_of_Curiosities.jpg/800px-17th-Century_Cabinet_of_Curiosities.jpg",
     "firstName": "Jenny",
@@ -28,9 +25,9 @@
         "itemType": "Scientifica"
       }
     ]
-  },
+  }
 
-  {
+let user2 = {
     "cabinetName": "Lucy's Cabinet",
     "cabinetImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Berlin_Naturkundemuseum_Korallen.jpg/800px-Berlin_Naturkundemuseum_Korallen.jpg",
     "firstName": "Lucy",
@@ -57,9 +54,9 @@
         "itemType": "Exotica"
       }
     ]
-  },
+  }
 
-  {
+let user3 = {
     "cabinetName": "Sterling's Collection",
     "cabinetImage": "https://cb2.scene7.com/is/image/CB2/AlbaWardrobeSHF18_1x1/$web_setitem326$/180522110834/alba-white-lacquer-wardrobe.jpg",
     "firstName": "Sterling",
@@ -78,9 +75,9 @@
         "itemType": "Naturalia"
       }
     ]
-  },
+  }
 
-  {
+let user4 = {
     "cabinetName": "Oscar's Stuff",
     "cabinetImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Musei_Wormiani_Historia.jpg/1024px-Musei_Wormiani_Historia.jpg",
     "firstName": "Oscar",
@@ -100,4 +97,3 @@
       }
     ]
   }
-]

@@ -41,4 +41,12 @@ router.post('/items', (req, res) => {
     })
 })
 
+router.delete('/items/:item_id', (req, res) => {
+  Item.findOneAndRemove({
+    item_id: req.body.item_id
+  }).then(item => {
+    res.json(item)
+  })
+})
+
 module.exports = router

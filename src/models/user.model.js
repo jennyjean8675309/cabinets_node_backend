@@ -28,7 +28,24 @@ let UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  public: Boolean
+  public: Boolean,
+  items: [
+    {
+      name: {
+        type: String,
+        required: true
+      },
+      description: String,
+      interpretation: String,
+      location: String,
+      itemImage: String,
+      itemType: {
+        type: String,
+        required: true,
+        enum: ["Artificialia", "Naturalia", "Exotica", "Scientifica"]
+      }
+    }
+  ]
 })
 
 module.exports = mongoose.model('User', UserSchema)
